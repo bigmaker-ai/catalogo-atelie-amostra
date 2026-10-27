@@ -56,6 +56,34 @@
     white-space: nowrap;
   }
   .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .chip { transition: transform .25s ease, background .25s, border-color .25s, color .25s; }
+  .chip.hi { transform: scale(1.12); background: var(--gold); border-color: var(--gold); color: #fff; }
+
+  /* Abertura */
+  .splash {
+    position: fixed; inset: 0; z-index: 20;
+    background: var(--bg);
+    display: grid; place-items: center; align-content: center; gap: 6px;
+    text-align: center;
+    transition: opacity .5s ease, visibility .5s;
+  }
+  .splash.out { opacity: 0; visibility: hidden; }
+  .splash > * { opacity: 0; transform: translateY(10px); animation: subir .7s ease forwards; }
+  .splash .s1 { font-size: 11px; letter-spacing: .45em; text-transform: uppercase; color: var(--muted); }
+  .splash .s2 { font-size: 12px; letter-spacing: .35em; text-transform: uppercase; color: var(--gold); animation-delay: .25s; margin-top: 14px; }
+  .splash .s3 { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; font-size: 42px; line-height: 1; animation-delay: .4s; }
+  .splash .risco { width: 0; height: 1px; background: var(--gold); opacity: 1; transform: none; animation: risco .8s .7s ease forwards; margin-top: 12px; }
+  @keyframes subir { to { opacity: 1; transform: none; } }
+  @keyframes risco { to { width: 120px; } }
+
+  /* entrada da página depois da abertura */
+  .card { opacity: 0; transform: translateY(14px); }
+  .ready .card { animation: subir .5s ease forwards; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash { display: none; }
+    .card { opacity: 1; transform: none; }
+  }
 
   /* Grade */
   .grid {
@@ -133,6 +161,13 @@
 </head>
 <body>
 
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="s1">Catálogo digital</div>
+  <div class="s2">Ateliê</div>
+  <div class="s3">America Ribeiro</div>
+  <div class="risco"></div>
+</div>
+
 <header>
   <div class="brand-small">Ateliê</div>
   <div class="brand">America Ribeiro</div>
@@ -187,6 +222,7 @@
         <b>${v.nome}</b>
         <small>${v.categorias.join(' · ')}</small>
       </button>`).join('');
+    $('grid').querySelectorAll('.card').forEach((c, i) => c.style.animationDelay = `${i * 70}ms`);
     $('grid').querySelectorAll('.card').forEach(c =>
       c.onclick = () => { location.hash = c.dataset.id; });
   }
@@ -249,9 +285,35 @@
   }
   addEventListener('hashchange', rota);
 
+  // Abertura rápida e depois um destaque passando por cada categoria
+  const espera = ms => new Promise(r => setTimeout(r, ms));
+  async function abertura() {
+    const semAnimacao = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (location.hash || semAnimacao) {   // veio pelo link do WhatsApp: vai direto
+      $('splash').remove();
+      document.body.classList.add('ready');
+      return;
+    }
+    await espera(1900);
+    $('splash').classList.add('out');
+    document.body.classList.add('ready');
+    await espera(600);
+    $('splash').remove();
+
+    const nav = $('cats');
+    for (const chip of nav.querySelectorAll('.chip')) {
+      nav.scrollTo({ left: chip.offsetLeft - nav.clientWidth / 2 + chip.offsetWidth / 2, behavior: 'smooth' });
+      chip.classList.add('hi');
+      await espera(260);
+      chip.classList.remove('hi');
+    }
+    nav.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+
   renderCats();
   renderGrid();
   rota();
+  abertura();
 </script>
 </body>
 </html>

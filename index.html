@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vestido Rosé Floral · Ateliê America Ribeiro</title>
+<meta name="description" content="Vestido longo rosé em tule com bordado floral em relevo. Veja o vestido em movimento.">
+<meta property="og:title" content="Vestido Rosé Floral · Ateliê America Ribeiro">
+<meta property="og:description" content="Tule com bordado floral em relevo. Veja o vestido em movimento.">
+<meta property="og:image" content="media/frente.jpg">
+<meta name="theme-color" content="#f6efea">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6efea;
+    --paper: #fbf7f4;
+    --ink: #3b2a2a;
+    --muted: #8a7270;
+    --rose: #b9767a;
+    --rose-deep: #9a5559;
+    --gold: #b8976a;
+    --line: #e6d8d0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Jost", system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    text-align: center;
+    padding: 22px 16px 14px;
+  }
+  .brand-small {
+    font-size: 11px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .brand {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+    display: grid;
+    gap: 28px;
+  }
+  @media (min-width: 860px) {
+    main { grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; padding-top: 12px; }
+    .media { position: sticky; top: 20px; }
+  }
+
+  /* Vídeo principal */
+  .stage {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    max-height: 78vh;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #eadfd8;
+    box-shadow: 0 20px 50px -24px rgba(90, 50, 50, .45);
+  }
+  .stage video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity .35s ease;
+  }
+  .stage video.fading { opacity: 0; }
+  .badge {
+    position: absolute; left: 12px; top: 12px;
+    background: rgba(251, 247, 244, .88);
+    backdrop-filter: blur(6px);
+    color: var(--ink);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 6px 11px; border-radius: 99px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .badge::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--rose);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { opacity: .3; } }
+
+  /* Miniaturas */
+  .thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .thumb {
+    border: 0; background: none; cursor: pointer;
+    font: inherit; color: var(--muted);
+    display: grid; gap: 6px; justify-items: center;
+    font-size: 12px; letter-spacing: .06em;
+  }
+  .thumb img {
+    width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+    border-radius: 10px;
+    outline: 2px solid transparent; outline-offset: 2px;
+    transition: outline-color .2s, opacity .2s;
+    opacity: .75;
+  }
+  .thumb[aria-pressed="true"] { color: var(--ink); font-weight: 500; }
+  .thumb[aria-pressed="true"] img { outline-color: var(--rose); opacity: 1; }
+
+  /* Informações */
+  .info { padding-top: 4px; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: clamp(34px, 7vw, 48px);
+    line-height: 1.05;
+    margin: 8px 0 14px;
+  }
+  .lead { font-size: 17px; color: #5a4544; }
+  .price {
+    margin: 22px 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  }
+  .price strong {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 26px; font-weight: 600; color: var(--rose-deep);
+  }
+  .price span { font-size: 13px; color: var(--muted); text-align: right; }
+
+  .cta {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%;
+    background: var(--rose-deep);
+    color: #fff; text-decoration: none;
+    font-weight: 400; font-size: 16px; letter-spacing: .04em;
+    padding: 16px 20px;
+    border-radius: 99px;
+    box-shadow: 0 12px 26px -14px rgba(154, 85, 89, .9);
+    transition: transform .15s, background .2s;
+  }
+  .cta:hover { background: #8a4a4e; transform: translateY(-1px); }
+  .cta svg { width: 20px; height: 20px; fill: currentColor; }
+  .cta-note { text-align: center; font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500; font-size: 24px;
+    margin: 34px 0 12px;
+  }
+  .details { list-style: none; display: grid; gap: 0; }
+  .details li {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .details li span:first-child { color: var(--muted); }
+  .details li span:last-child { text-align: right; }
+
+  .occasions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .occasions span {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 28px 16px 40px;
+    font-size: 12px; color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer .brand { font-size: 22px; margin-bottom: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .badge::before { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-small">Ateliê</div>
+  <div class="brand">America Ribeiro</div>
+</header>
+
+<main>
+  <section class="media">
+    <div class="stage">
+      <video id="player" src="media/frente.mp4" poster="media/frente.jpg"
+             autoplay muted loop playsinline preload="auto"></video>
+      <div class="badge" id="badge">Em movimento</div>
+    </div>
+
+    <div class="thumbs" role="group" aria-label="Escolha o ângulo">
+      <button class="thumb" aria-pressed="true" data-src="frente" data-label="Frente">
+        <img src="media/frente-thumb.jpg" alt="Vestido de frente">Frente
+      </button>
+      <button class="thumb" aria-pressed="false" data-src="giro" data-label="Costas e caimento">
+        <img src="media/giro-thumb.jpg" alt="Vestido girando">Giro
+      </button>
+      <button class="thumb" aria-pressed="false" data-src="busto" data-label="Busto e alças">
+        <img src="media/busto-thumb.jpg" alt="Detalhe do busto">Busto
+      </button>
+      <button class="thumb" aria-pressed="false" data-src="renda" data-label="Bordado de perto">
+        <img src="media/renda-thumb.jpg" alt="Detalhe do bordado no tule">Renda
+      </button>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="eyebrow">Coleção 15 anos · Festa</div>
+    <h1>Vestido Rosé Floral</h1>
+    <p class="lead">
+      Longo em tule rosé com bordado floral em relevo, alças delicadas e cintura marcada.
+      A saia evasê flutua a cada passo, e as flores bordadas dão profundidade ao tecido.
+    </p>
+
+    <div class="price">
+      <strong>Sob consulta</strong>
+      <span>Aluguel ou venda<br>Ajustes inclusos</span>
+    </div>
+
+    <a class="cta" id="cta" target="_blank" rel="noopener"
+       href="https://wa.me/?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Vestido%20Ros%C3%A9%20Floral%20do%20cat%C3%A1logo.">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+      Quero esse vestido
+    </a>
+    <p class="cta-note">Atendimento pelo WhatsApp · Prova no ateliê com hora marcada</p>
+
+    <h2>Detalhes</h2>
+    <ul class="details">
+      <li><span>Tecido</span><span>Tule com bordado floral 3D</span></li>
+      <li><span>Cor</span><span>Rosé antigo</span></li>
+      <li><span>Comprimento</span><span>Longo</span></li>
+      <li><span>Decote</span><span>Reto, alças finas</span></li>
+      <li><span>Silhueta</span><span>Cintura marcada, saia evasê</span></li>
+      <li><span>Tamanhos</span><span>Ajustado sob medida</span></li>
+    </ul>
+
+    <h2>Ideal para</h2>
+    <div class="occasions">
+      <span>Debutante</span><span>Madrinha</span><span>Formatura</span><span>Casamento de dia</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="brand">America Ribeiro</div>
+  Página de amostra · catálogo digital
+</footer>
+
+<script>
+  const player = document.getElementById('player');
+  const badge = document.getElementById('badge');
+  const thumbs = document.querySelectorAll('.thumb');
+
+  // pré-carrega os outros vídeos para a troca ficar instantânea
+  thumbs.forEach(t => {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = `media/${t.dataset.src}.mp4`;
+    document.head.appendChild(link);
+  });
+
+  thumbs.forEach(t => t.addEventListener('click', () => {
+    if (t.getAttribute('aria-pressed') === 'true') return;
+    thumbs.forEach(o => o.setAttribute('aria-pressed', o === t));
+    player.classList.add('fading');
+    setTimeout(() => {
+      player.poster = `media/${t.dataset.src}.jpg`;
+      player.src = `media/${t.dataset.src}.mp4`;
+      player.play().catch(() => {});
+      badge.textContent = t.dataset.label;
+      player.classList.remove('fading');
+    }, 250);
+  }));
+</script>
+</body>
+</html>

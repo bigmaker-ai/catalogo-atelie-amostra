@@ -80,11 +80,6 @@
   .card { opacity: 0; transform: translateY(14px); }
   .ready .card { animation: subir .5s ease forwards; }
 
-  @media (prefers-reduced-motion: reduce) {
-    .splash { display: none; }
-    .card { opacity: 1; transform: none; }
-  }
-
   /* Grade */
   .grid {
     max-width: 1100px; margin: 0 auto;
@@ -288,8 +283,7 @@
   // Abertura rápida e depois um destaque passando por cada categoria
   const espera = ms => new Promise(r => setTimeout(r, ms));
   async function abertura() {
-    const semAnimacao = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (location.hash || semAnimacao) {   // veio pelo link do WhatsApp: vai direto
+    if (location.hash) {   // veio pelo link do WhatsApp: vai direto
       $('splash').remove();
       document.body.classList.add('ready');
       return;
